@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // modern JS target
+    "module": "ESNext", // or "ES2022"
+    "moduleResolution": "Bundler", // for smooth module resolving
+    "jsx": "react-jsx", // important! tells TS how to handle JSX
+    "strict": true, // optional, but recommended
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"], // make sure your source files included
+  "exclude": ["node_modules", "dist"]
+}

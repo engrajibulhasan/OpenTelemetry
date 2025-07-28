@@ -1,0 +1,25 @@
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686" # Jaeger UI
+      - "4317:4317" # OTLP gRPC (for collector to Jaeger communication)
+    networks:
+      - otel-network
+
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    volumes:
+      - ./collector-config.yaml:/etc/otelcol/config.yaml
+    ports:
+      - "4318:4318" # OTLP HTTP (for React app)
+    depends_on:
+      - jaeger
+    networks:
+      - otel-network
+
+networks:
+  otel-network:
+    driver: bridge
